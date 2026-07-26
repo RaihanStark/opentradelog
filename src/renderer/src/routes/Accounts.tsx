@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Upload } from 'lucide-react'
+import { Sparkles, Upload } from 'lucide-react'
 import type { AccountInput } from '@shared/api'
 import type { AccountPhase } from '@shared/domain'
 import { formatUSD } from '@shared/money'
@@ -35,6 +35,14 @@ export function Accounts(): React.JSX.Element {
       setMsg(`Imported ${res.received} fills → ${res.trades} trades (${res.inserted} new, ${res.skipped} skipped).`)
       await refreshAccounts()
     }
+  }
+
+  const loadDemo = async (): Promise<void> => {
+    setBusy(true)
+    const res = await otl().loadDemo()
+    setMsg(res.loaded ? `Loaded ${res.accounts} demo accounts with journaled trades.` : 'Demo data already loaded.')
+    await refreshAccounts()
+    setBusy(false)
   }
 
   const field = 'h-8 rounded border border-border-strong bg-panel-2 px-2 text-[13px] text-fg focus:outline-none'
@@ -83,6 +91,14 @@ export function Accounts(): React.JSX.Element {
             Topstep accounts auto-fill profit target, trailing max loss, daily loss limit, and the consistency rule
             from the size preset.
           </p>
+          <div className="mt-1 flex items-center gap-2 border-t border-border pt-2">
+            <Button variant="default" size="sm" onClick={loadDemo} disabled={busy}>
+              <Sparkles size={13} /> Load demo data
+            </Button>
+            <span className="text-[11px] text-fg-subtle">
+              Fills 3 example accounts with journaled trades to explore every feature.
+            </span>
+          </div>
         </div>
       </Panel>
 

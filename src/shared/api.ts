@@ -69,6 +69,7 @@ export interface OtlApi {
   vaultStatus(): Promise<VaultStatus>
   chooseVault(): Promise<VaultStatus>
   importVault(): Promise<{ accounts: number; executions: number }>
+  loadDemo(): Promise<{ accounts: number; loaded: boolean }>
 
   listAccounts(): Promise<Account[]>
   createAccount(input: AccountInput): Promise<Account>
@@ -90,6 +91,7 @@ export const IPC_CHANNELS: Record<keyof OtlApi, string> = {
   vaultStatus: 'vault:status',
   chooseVault: 'vault:choose',
   importVault: 'vault:import',
+  loadDemo: 'demo:load',
   listAccounts: 'accounts:list',
   createAccount: 'accounts:create',
   getRuleConfig: 'accounts:ruleConfig',

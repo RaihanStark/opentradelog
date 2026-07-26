@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { RefreshCw } from 'lucide-react'
+import { RefreshCw, Sparkles } from 'lucide-react'
 import type { DashboardAccount } from '@shared/api'
 import { formatPct } from '@shared/money'
 import { useApp } from '../lib/app-context'
 import { otl } from '../lib/utils'
-import { Button, Empty, Meter, Panel, PnL, Stat } from '../components/ui'
+import { Button, Meter, Panel, PnL, Stat } from '../components/ui'
 import { EquityChart } from '../components/EquityChart'
 
 export function Dashboard(): React.JSX.Element {
-  const { selectedAccountId, accounts } = useApp()
+  const { selectedAccountId, accounts, refreshAccounts } = useApp()
   const [data, setData] = useState<DashboardAccount[]>([])
   const [loading, setLoading] = useState(true)
 
@@ -22,18 +22,29 @@ export function Dashboard(): React.JSX.Element {
     void load()
   }, [accounts.length])
 
+  const loadDemo = async (): Promise<void> => {
+    await otl().loadDemo()
+    await refreshAccounts()
+    await load()
+  }
+
   const shown = selectedAccountId ? data.filter((d) => d.account.id === selectedAccountId) : data
 
   if (!loading && accounts.length === 0) {
     return (
       <Panel label="Get started">
-        <Empty>
-          No accounts yet. Head to{' '}
-          <Link to="/accounts" className="text-accent underline">
-            Accounts
-          </Link>{' '}
-          to create one and import your fills.
-        </Empty>
+        <div className="flex flex-col items-center gap-3 py-8 text-center">
+          <p className="text-sm text-fg-muted">
+            No accounts yet. Create one in{' '}
+            <Link to="/accounts" className="text-accent underline">
+              Accounts
+            </Link>{' '}
+            and import your fills — or load the demo to explore every feature.
+          </p>
+          <Button variant="primary" onClick={loadDemo}>
+            <Sparkles size={15} /> Load demo data
+          </Button>
+        </div>
       </Panel>
     )
   }

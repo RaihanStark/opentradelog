@@ -7,6 +7,7 @@ import { writeSettings } from '../settings'
 import { createAccount, getRuleConfig, listAccounts } from '../core/accounts'
 import { evaluateAccount } from '../core/rules'
 import { importCsvIntoAccount, importFromVault } from '../core/import'
+import { loadDemoData } from '../core/demo'
 import { getDashboard } from '../core/dashboard'
 import { getAnalytics, listTrades, updateTradeJournal } from '../core/trades'
 import { getJournal, upsertJournal } from '../core/journal'
@@ -37,6 +38,14 @@ export function registerIpc(vault: VaultManager, getWindow: () => BrowserWindow 
   ipcMain.handle(IPC_CHANNELS.importVault, () => {
     requireVault()
     const r = importFromVault(vault.db, vault.dir!)
+    vault.mirror()
+    return r
+  })
+
+  ipcMain.handle(IPC_CHANNELS.loadDemo, () => {
+    requireVault()
+    const r = loadDemoData(vault.db)
+    for (const a of listAccounts(vault.db)) evaluateAccount(vault.db, a.id, now())
     vault.mirror()
     return r
   })
