@@ -1,0 +1,12 @@
+node_modules
+dist
+out
+.DS_Store
+.eslintcache
+*.log*
+
+# Local trading-journal vaults / databases — never commit personal data
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+/vault/
