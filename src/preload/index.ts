@@ -5,6 +5,7 @@ const otl: OtlApi = {
   vaultStatus: () => ipcRenderer.invoke(IPC_CHANNELS.vaultStatus),
   chooseVault: () => ipcRenderer.invoke(IPC_CHANNELS.chooseVault),
   importVault: () => ipcRenderer.invoke(IPC_CHANNELS.importVault),
+  loadDemo: () => ipcRenderer.invoke(IPC_CHANNELS.loadDemo),
   listAccounts: () => ipcRenderer.invoke(IPC_CHANNELS.listAccounts),
   createAccount: (input) => ipcRenderer.invoke(IPC_CHANNELS.createAccount, input),
   getRuleConfig: (id) => ipcRenderer.invoke(IPC_CHANNELS.getRuleConfig, id),

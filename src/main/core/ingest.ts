@@ -6,7 +6,7 @@ import type { RawExecution } from '@shared/domain'
 import { groupRoundTrips, type FillLike } from '../domain/roundTrip'
 import { ctSessionDate } from '../domain/dates'
 
-function tradeIdFor(firstExecId: string): string {
+export function tradeIdFor(firstExecId: string): string {
   return 'trd_' + createHash('sha1').update(firstExecId).digest('hex').slice(0, 20)
 }
 
