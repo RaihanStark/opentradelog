@@ -1,0 +1,126 @@
+@import 'tailwindcss';
+
+/*
+ * OpenTradeLog design system — "pro terminal", dark-first.
+ * Semantic colors only; numbers are monospace + tabular.
+ */
+
+@theme {
+  --font-sans:
+    'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono:
+    'JetBrains Mono', ui-monospace, 'SF Mono', 'Cascadia Code', 'Roboto Mono', monospace;
+
+  /* mapped to CSS vars so light/dark can swap them at runtime */
+  --color-bg: var(--bg);
+  --color-panel: var(--panel);
+  --color-panel-2: var(--panel-2);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-fg: var(--fg);
+  --color-fg-muted: var(--fg-muted);
+  --color-fg-subtle: var(--fg-subtle);
+  --color-profit: var(--profit);
+  --color-loss: var(--loss);
+  --color-warn: var(--warn);
+  --color-breach: var(--breach);
+  --color-accent: var(--accent);
+  --color-accent-fg: var(--accent-fg);
+}
+
+/* Dark (default) */
+:root {
+  --bg: #0b0d10;
+  --panel: #14171c;
+  --panel-2: #1a1e24;
+  --border: #232830;
+  --border-strong: #313843;
+  --fg: #e6e9ee;
+  --fg-muted: #9aa4b2;
+  --fg-subtle: #626d7d;
+  --profit: #21c17a;
+  --loss: #f0554e;
+  --warn: #e0a13c;
+  --breach: #ff3b3b;
+  --accent: #3fb6e0;
+  --accent-fg: #04121a;
+  color-scheme: dark;
+}
+
+:root[data-theme='light'] {
+  --bg: #f5f6f8;
+  --panel: #ffffff;
+  --panel-2: #f0f2f5;
+  --border: #e0e3e8;
+  --border-strong: #cbd0d8;
+  --fg: #131720;
+  --fg-muted: #576070;
+  --fg-subtle: #8a93a3;
+  --profit: #0f9d58;
+  --loss: #d93a34;
+  --warn: #b7791f;
+  --breach: #e11d1d;
+  --accent: #0e7fa8;
+  --accent-fg: #ffffff;
+  color-scheme: light;
+}
+
+* {
+  border-color: var(--border);
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow: hidden; /* app owns its own scroll regions */
+}
+
+/* Tabular monospace numerals — used on every money/price/R value */
+.num {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum' 1;
+  letter-spacing: -0.01em;
+}
+
+/* Uppercase panel/section headers (terminal feel) */
+.panel-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fg-subtle);
+}
+
+/* Draggable custom title bar region */
+.drag {
+  -webkit-app-region: drag;
+}
+.no-drag {
+  -webkit-app-region: no-drag;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 6px;
+  border: 2px solid var(--bg);
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
