@@ -2,6 +2,8 @@ import { app, shell, BrowserWindow } from 'electron'
 import { join } from 'path'
 import { existsSync } from 'fs'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
+
+app.setName('opentradelog')
 import icon from '../../resources/icon.png?asset'
 import { VaultManager } from './vault/vault'
 import { registerIpc } from './ipc'
@@ -10,9 +12,9 @@ import { readSettings } from './settings'
 let mainWindow: BrowserWindow | null = null
 
 function migrationsFolder(): string {
-  return app.isPackaged
-    ? join(process.resourcesPath, 'drizzle')
-    : join(app.getAppPath(), 'drizzle')
+  if (app.isPackaged) return join(process.resourcesPath, 'drizzle')
+  if (existsSync(join(app.getAppPath(), 'drizzle'))) return join(app.getAppPath(), 'drizzle')
+  return join(__dirname, '../../drizzle')
 }
 
 const vault = new VaultManager(migrationsFolder())
