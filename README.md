@@ -8,7 +8,19 @@ Made for full-time futures traders (Topstep and beyond). Import your fills, get 
 
 ---
 
-## Your data is yours — forever
+## 📸 Screenshots
+
+| Dashboard (Guardrails & Equity Curve) | Trade Log (Automatic Round-Trips) |
+| :---: | :---: |
+| ![Dashboard](./docs/screenshots/dashboard.png) | ![Trades](./docs/screenshots/trades.png) |
+
+| Analytics (Expectancy & Performance) | Daily Journal (Pre/Post Routine) |
+| :---: | :---: |
+| ![Analytics](./docs/screenshots/analytics.png) | ![Journal](./docs/screenshots/journal.png) |
+
+---
+
+## 🛡️ Your data is yours — forever
 
 This is the core design principle, not a footnote:
 
@@ -30,7 +42,9 @@ This is the core design principle, not a footnote:
 - **Not a "Topstep app."** Topstep is one pluggable *rule profile*; a retail/no-rules profile ships too. Change firms, brokers, or go live — your journal continues unbroken.
 - **MIT licensed & open source.** The tool is as ownable as the data — fork it, keep it, no one can sunset it.
 
-## Features
+---
+
+## ✨ Features
 
 - **Import** broker/TradingView fills via CSV → automatic **round-trip trade grouping** (handles scale-in/out and position flips).
 - **Topstep guardrails**: trailing max-loss buffer (EOD for Combine, intraday for Express Funded), daily loss limit, profit target, and the 50%/40% consistency rule — as live dashboard meters with warn/breach states.
@@ -39,11 +53,15 @@ This is the core design principle, not a footnote:
 - **Daily routine**: pre-market game plan + post-session review.
 - **Design**: pro-terminal, dark-first, monospace tabular numbers, keyboard-friendly.
 
-## Tech stack
+---
+
+## 🛠️ Tech Stack
 
 Electron · React · TypeScript · Vite · Tailwind CSS · Drizzle ORM + better-sqlite3 · Recharts. 100% local; the sync timer, SQLite, and (future) broker API key all live in the Node main process.
 
-## Develop
+---
+
+## 💻 Develop
 
 ```bash
 pnpm install        # Node 20+ and a C toolchain required (better-sqlite3)
@@ -53,11 +71,15 @@ pnpm build          # typecheck + production bundle
 pnpm build:linux    # package (also :mac / :win)
 ```
 
-## Roadmap
+---
+
+## 🗺️ Roadmap
 
 - **Phase 2 — Automated ProjectX/TopstepX sync** (requires Topstep's paid ProjectX API add-on): incremental pull, encrypted API key via Electron `safeStorage`, scheduled + on-demand sync.
 - Chart/screenshot attachments UI & TradingView embeds, journal calendar heatmap, ⌘K command palette, more firm profiles (Apex, TakeProfit), CSV/PDF export, auto-update.
 
-## License
+---
+
+## 📄 License
 
 [MIT](./LICENSE) © OpenTradeLog contributors
