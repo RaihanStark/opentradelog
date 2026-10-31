@@ -10,13 +10,13 @@ Made for full-time futures traders (Topstep and beyond). Import your fills, get 
 
 ## 📸 Screenshots
 
-| Dashboard (Guardrails & Equity Curve) | Trade Log (Automatic Round-Trips) |
+| Dashboard (Guardrails & Equity Curve) | Daily Journal (Pre/Post-Market Routine) |
 | :---: | :---: |
-| ![Dashboard](./docs/screenshots/dashboard.png) | ![Trades](./docs/screenshots/trades.png) |
+| ![Dashboard](./docs/screenshots/dashboard.png) | ![Journal](./docs/screenshots/journal.png) |
 
-| Analytics (Expectancy & Performance) | Daily Journal (Pre/Post Routine) |
+| Trade Log (Automatic Round-Trips) | Analytics (Expectancy & Performance) |
 | :---: | :---: |
-| ![Analytics](./docs/screenshots/analytics.png) | ![Journal](./docs/screenshots/journal.png) |
+| ![Trades](./docs/screenshots/trades.png) | ![Analytics](./docs/screenshots/analytics.png) |
 
 ---
 
